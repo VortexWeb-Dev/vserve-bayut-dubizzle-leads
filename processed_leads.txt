@@ -1,5 +1,9 @@
 email|da21e02b-f5f5-47e3-a5a4-c0dc6bfd430e
 email|5ffd9688-1d0f-4e98-b66f-b82277525518
+phone|d828b303-ce26-4407-b017-38e3beaaa01d
+whatsapp|2f520b75-a394-4b8d-aef8-a8cd278df091
+whatsapp|f33c67c2-6b57-4af6-8df1-46f7a4a74629
+whatsapp|1c0d07f9-b024-4335-be19-f0fc00b20e99
 whatsapp|4b739715-095f-4f2a-b903-f6583a04cc58
 whatsapp|0db565de-7a71-48ff-855c-96200d35b9ff
 whatsapp|952f72cb-b198-46f4-ab81-4738bd306a78
