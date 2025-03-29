@@ -1,0 +1,134 @@
+2025-03-25 14:12:53 - [
+    {
+        "date_time": "2025-03-25 01:29:06",
+        "source": "bayut",
+        "listing_id": 10813018,
+        "lead_id": "whatsapp|4b739715-095f-4f2a-b903-f6583a04cc58",
+        "listing_reference": "AP7427L",
+        "detail": {
+            "actor_name": "Zeidat",
+            "cell": "+972568679579",
+            "message": "Hi, I am interested in your property on Bayut. Link: https:\/\/www.bayut.com\/pm\/10813018\/c3a9b58c-1b90-44ac-b4a6-e8861d10ef3c\nReference no.: AP7427L"
+        },
+        "delivery_notifications": [
+            {
+                "status": "sent",
+                "created_at": "2025-03-25 01:29:08"
+            },
+            {
+                "status": "delivered",
+                "created_at": "2025-03-25 01:29:08"
+            }
+        ]
+    },
+    {
+        "date_time": "2025-03-24 15:57:50",
+        "source": "bayut",
+        "listing_id": 10813558,
+        "lead_id": "whatsapp|0db565de-7a71-48ff-855c-96200d35b9ff",
+        "listing_reference": "AP7428L",
+        "detail": {
+            "actor_name": "Alejandro Vega Gonz\u00e1lez",
+            "cell": "+971501046096",
+            "message": "Hi, I am interested in your property on Bayut: https:\/\/www.bayut.com\/pm\/10813558\/a4dc3493-736a-4908-9355-b23d0d5bbae3\nRef: AP7428L"
+        },
+        "delivery_notifications": [
+            {
+                "status": "sent",
+                "created_at": "2025-03-24 15:57:52"
+            },
+            {
+                "status": "delivered",
+                "created_at": "2025-03-24 15:57:52"
+            }
+        ]
+    },
+    {
+        "date_time": "2025-03-24 11:45:35",
+        "source": "bayut",
+        "listing_id": 11168066,
+        "lead_id": "whatsapp|952f72cb-b198-46f4-ab81-4738bd306a78",
+        "listing_reference": "AP7400",
+        "detail": {
+            "actor_name": "Miss R@ch@",
+            "cell": "+213675360322",
+            "message": "Hi, I am interested in your property on Bayut. Link: https:\/\/www.bayut.com\/pm\/11168066\/f15b5f48-6760-45fe-a9de-e441a4239923\nReference no.: AP7400"
+        },
+        "delivery_notifications": [
+            {
+                "status": "sent",
+                "created_at": "2025-03-24 11:45:42"
+            },
+            {
+                "status": "delivered",
+                "created_at": "2025-03-24 11:45:42"
+            }
+        ]
+    },
+    {
+        "date_time": "2025-03-24 11:45:13",
+        "source": "bayut",
+        "listing_id": 11168057,
+        "lead_id": "whatsapp|13bef1f7-6e1d-4912-9fb3-b54e5cd65bee",
+        "listing_reference": "AP7345",
+        "detail": {
+            "actor_name": "Miss R@ch@",
+            "cell": "+213675360322",
+            "message": "Hi, I am interested in your property on Bayut. Link: https:\/\/www.bayut.com\/pm\/11168057\/408836f3-9602-464e-9085-21a41638732c\nReference no.: AP7345"
+        },
+        "delivery_notifications": [
+            {
+                "status": "sent",
+                "created_at": "2025-03-24 11:45:15"
+            },
+            {
+                "status": "delivered",
+                "created_at": "2025-03-24 11:45:15"
+            }
+        ]
+    },
+    {
+        "date_time": "2025-03-24 09:32:15",
+        "source": "bayut",
+        "listing_id": 10993873,
+        "lead_id": "whatsapp|aafa49c2-d6b5-4aa1-895d-afc9e170b694",
+        "listing_reference": "AP7434L",
+        "detail": {
+            "actor_name": "Safarov",
+            "cell": "+380687545255",
+            "message": "Hi, I am interested in your property on Bayut. Link: https:\/\/www.bayut.com\/pm\/10993873\/37b4453c-7bb5-4669-b850-8519ab1391a2\nReference no.: AP7434L"
+        },
+        "delivery_notifications": [
+            {
+                "status": "sent",
+                "created_at": "2025-03-24 09:32:17"
+            },
+            {
+                "status": "delivered",
+                "created_at": "2025-03-24 09:32:17"
+            }
+        ]
+    },
+    {
+        "date_time": "2025-03-23 15:17:44",
+        "source": "bayut",
+        "listing_id": 10519201,
+        "lead_id": "whatsapp|78055bec-d488-43e9-9c5e-ff3c72af8f74",
+        "listing_reference": "OF7410L",
+        "detail": {
+            "actor_name": "Arsen",
+            "cell": "+37455298527",
+            "message": "Hi, I am interested in your property on Bayut. Link: https:\/\/www.bayut.com\/pm\/10519201\/29d56950-392b-440f-a348-d5f42244999f\nReference no.: OF7410L"
+        },
+        "delivery_notifications": [
+            {
+                "status": "sent",
+                "created_at": "2025-03-23 15:17:46"
+            },
+            {
+                "status": "delivered",
+                "created_at": "2025-03-23 15:17:46"
+            }
+        ]
+    }
+]

@@ -1,0 +1,24 @@
+2025-03-25 14:12:51 - [
+    {
+        "property_id": 0,
+        "lead_id": "email|da21e02b-f5f5-47e3-a5a4-c0dc6bfd430e",
+        "property_reference": "",
+        "current_type": "",
+        "date_time": "2025-03-25 11:16:59",
+        "message": "I would like to find out more about your agency and properties. Please contact me at your earliest convenience.",
+        "client_name": "Maja",
+        "client_email": "maja.m@egsh.ae",
+        "client_phone": "+971505467033"
+    },
+    {
+        "property_id": 11168045,
+        "lead_id": "email|5ffd9688-1d0f-4e98-b66f-b82277525518",
+        "property_reference": "AP7294",
+        "current_type": "Apartment",
+        "date_time": "2025-03-24 05:17:53",
+        "message": "I would like to inquire about your property Bayut - AP7294. Please contact me at your earliest convenience.",
+        "client_name": "Alessandro Santin",
+        "client_email": "sandromuseum@gmail.com",
+        "client_phone": "+393389126560"
+    }
+]
