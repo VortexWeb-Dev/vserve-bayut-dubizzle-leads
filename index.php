@@ -160,7 +160,7 @@ class LeadProcessor
                 'UF_CRM_1742891784021' => $lead['detail']['cell'],
                 'UF_CRM_1735997531807' => $lead['listing_id'] !== '' ? generatePropertyLink($lead['listing_id']) : '',
                 'COMMENTS' => $lead['detail']['message'],
-                'UF_CRM_1739890146108' => $lead['listing_reference'],
+                'UF_CRM_1735998202607' => $lead['listing_reference'],
                 'OPPORTUNITY' => getPropertyPrice($lead['listing_reference']) ?? '',
                 'CONTACT_ID' => $contactId,
             ];
