@@ -88,7 +88,7 @@ class LeadProcessor
     private function processBayutLeads($leads)
     {
         foreach ($leads as $lead) {
-            if ($this->isProcessedLead($lead['lead_id'])) continue;
+            if ($this->isProcessedLead($lead['lead_id'], 'bayut', 'leads', $lead['date_time'])) continue;
 
             $assignedById = !empty($lead['property_reference']) ? getResponsiblePerson($lead['property_reference'], 'reference') : DEFAULT_ASSIGNED_USER_ID;
             $title = "Bayut - Email - " . ($lead['property_reference'] !== "" ? $lead['property_reference'] : 'No reference');
@@ -127,14 +127,14 @@ class LeadProcessor
                 'CONTACT_ID' => $contactId,
             ];
 
-            $this->createLeadAndSave($fields, $lead['lead_id']);
+            $this->createLeadAndSave($fields, $lead['lead_id'], 'bayut', 'leads', $lead['date_time']);
         }
     }
 
     private function processBayutWhatsappLeads($leads)
     {
         foreach ($leads as $lead) {
-            if ($this->isProcessedLead($lead['lead_id'])) continue;
+            if ($this->isProcessedLead($lead['lead_id'], 'bayut', 'whatsapp_leads', $lead['date_time'])) continue;
 
             $assignedById = !empty($lead['listing_reference']) ? getResponsiblePerson($lead['listing_reference'], 'reference') : DEFAULT_ASSIGNED_USER_ID;
             $title = "Bayut - WhatsApp - " . ($lead['listing_reference'] !== '' ? $lead['listing_reference'] : 'No reference');
@@ -166,17 +166,17 @@ class LeadProcessor
             ];
 
 
-            $this->createLeadAndSave($fields, $lead['lead_id']);
+            $this->createLeadAndSave($fields, $lead['lead_id'], 'bayut', 'whatsapp_leads', $lead['date_time']);
         }
     }
 
     private function processBayutCallLogs($leads)
     {
         foreach ($leads as $lead) {
-            if ($this->isProcessedLead($lead['lead_id'])) continue;
+            if ($this->isProcessedLead($lead['lead_id'], 'bayut', 'call_logs', ($lead['date'] . ' ' . $lead['time']))) continue;
 
             $fields = $this->prepareCallFields($lead, 'Bayut');
-            $newLeadId = $this->createLeadAndSave($fields, $lead['lead_id']);
+            $newLeadId = $this->createLeadAndSave($fields, $lead['lead_id'], 'bayut', 'call_logs', ($lead['date'] . ' ' . $lead['time']));
 
             if ($lead['call_recordingurl'] !== 'None') {
                 $this->processCallRecording($lead, $fields, $newLeadId, 'Bayut');
@@ -187,7 +187,7 @@ class LeadProcessor
     private function processDubizzleLeads($leads)
     {
         foreach ($leads as $lead) {
-            if ($this->isProcessedLead($lead['lead_id'])) continue;
+            if ($this->isProcessedLead($lead['lead_id'], 'dubizzle', 'leads', $lead['date_time'])) continue;
 
             $assignedById = !empty($lead['property_reference']) ? getResponsiblePerson($lead['property_reference'], 'reference') : DEFAULT_ASSIGNED_USER_ID;
             $title = "Dubizzle - Email - " . ($lead['property_reference'] !== '' ? $lead['property_reference'] : 'No reference');
@@ -226,14 +226,14 @@ class LeadProcessor
                 'CONTACT_ID' => $contactId,
             ];
 
-            $this->createLeadAndSave($fields, $lead['lead_id']);
+            $this->createLeadAndSave($fields, $lead['lead_id'], 'dubizzle', 'leads', $lead['date_time']);
         }
     }
 
     private function processDubizzleWhatsappLeads($leads)
     {
         foreach ($leads as $lead) {
-            if ($this->isProcessedLead($lead['lead_id'])) continue;
+            if ($this->isProcessedLead($lead['lead_id'], 'dubizzle', 'whatsapp_leads', $lead['date_time'])) continue;
 
             $assignedById = !empty($lead['listing_reference']) ? getResponsiblePerson($lead['listing_reference'], 'reference') : DEFAULT_ASSIGNED_USER_ID;
             $title = "Dubizzle - WhatsApp - " . ($lead['listing_reference'] !== "" ? $lead['listing_reference'] : 'No reference');
@@ -265,17 +265,17 @@ class LeadProcessor
                 'CONTACT_ID' => $contactId,
             ];
 
-            $this->createLeadAndSave($fields, $lead['lead_id']);
+            $this->createLeadAndSave($fields, $lead['lead_id'], 'dubizzle', 'whatsapp_leads', $lead['date_time']);
         }
     }
 
     private function processDubizzleCallLogs($leads)
     {
         foreach ($leads as $lead) {
-            if ($this->isProcessedLead($lead['lead_id'])) continue;
+            if ($this->isProcessedLead($lead['lead_id'], 'dubizzle', 'call_logs', ($lead['date'] . ' ' . $lead['time']))) continue;
 
             $fields = $this->prepareCallFields($lead, 'Dubizzle');
-            $newLeadId = $this->createLeadAndSave($fields, $lead['lead_id']);
+            $newLeadId = $this->createLeadAndSave($fields, $lead['lead_id'], 'dubizzle', 'call_logs', ($lead['date'] . ' ' . $lead['time']));
 
             if ($lead['call_recordingurl'] !== 'None' && $lead['call_recordingurl'] !== '') {
                 $this->processCallRecording($lead, $fields, $newLeadId, 'Dubizzle');
@@ -393,21 +393,34 @@ class LeadProcessor
         logData('attach_record.log', print_r($attachRecord, true));
     }
 
-    private function createLeadAndSave($fields, $leadId)
+    private function createLeadAndSave($fields, $leadId, $platform, $leadType, $timestamp)
     {
-        logData('fields.log', print_r($fields, true));
-
         $newLeadId = createBitrixDeal($fields);
+
+        if (!$newLeadId) {
+            logData('error.log', "Failed to create lead: " . json_encode($fields));
+            echo "Error creating lead for ID: $leadId\n";
+            return;
+        }
+
+        logData('fields.log', print_r([...$fields, 'ID' => $newLeadId], true));
         echo "New Lead Created: $newLeadId\n";
 
-        $this->saveProcessedLead($leadId);
+        $this->saveProcessedLead($leadId, $platform, $leadType, $timestamp);
         return $newLeadId;
     }
 
-    private function isProcessedLead($leadId)
+    private function generateCompositeKey($leadId, $platform, $leadType, $timestamp)
     {
-        if (in_array($leadId, $this->processedLeads)) {
-            echo "Duplicate Lead Skipped: $leadId\n";
+        return "{$platform}_{$leadType}_{$leadId}_{$timestamp}";
+    }
+
+    private function isProcessedLead($leadId, $platform, $leadType, $timestamp)
+    {
+        $compositeKey = $this->generateCompositeKey($leadId, $platform, $leadType, $timestamp);
+
+        if (in_array($compositeKey, $this->processedLeads)) {
+            echo "Duplicate Lead Skipped: $compositeKey\n";
             return true;
         }
         return false;
@@ -418,10 +431,11 @@ class LeadProcessor
         return getProcessedLeads($this->leadFile);
     }
 
-    private function saveProcessedLead($leadId)
+    private function saveProcessedLead($leadId, $platform, $leadType, $timestamp)
     {
-        saveProcessedLead($this->leadFile, $leadId);
-        $this->processedLeads[] = $leadId;
+        $compositeKey = $this->generateCompositeKey($leadId, $platform, $leadType, $timestamp);
+        saveProcessedLead($this->leadFile, $compositeKey);
+        $this->processedLeads[] = $compositeKey;
     }
 }
 

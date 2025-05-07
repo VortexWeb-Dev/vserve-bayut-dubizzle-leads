@@ -57,12 +57,23 @@ function makeApiRequest(string $url, array $headers)
     return $data;
 }
 
-function logData(string $filename, string $message)
+function logData(string $filename, string $message): void
 {
     date_default_timezone_set('Asia/Kolkata');
 
-    $logFile = __DIR__ . '/logs/' . $filename;
-    file_put_contents($logFile, date('Y-m-d H:i:s') . " - $message\n", FILE_APPEND);
+    $baseDir = __DIR__ . '/logs';
+    $year = date('Y');
+    $month = date('m');
+    $day = date('d');
+
+    $logDir = "$baseDir/$year/$month/$day";
+    if (!is_dir($logDir)) {
+        mkdir($logDir, 0777, true);
+    }
+
+    $logFile = "$logDir/$filename";
+    $logMessage = date('Y-m-d H:i:s') . " - $message\n";
+    file_put_contents($logFile, $logMessage, FILE_APPEND);
 }
 
 function fetchLeads(string $type, string $timestamp, string $authToken, string $platform)
